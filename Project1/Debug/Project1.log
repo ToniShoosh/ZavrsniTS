@@ -1,0 +1,4 @@
+﻿  Functions.c
+G:\ZavrsniTS\Project1\Functions.c(339,26): warning C4028: formal parameter 1 different from declaration
+G:\ZavrsniTS\Project1\Functions.c(339,44): warning C4028: formal parameter 2 different from declaration
+  Project1.vcxproj -> G:\ZavrsniTS\Debug\Project1.exe
