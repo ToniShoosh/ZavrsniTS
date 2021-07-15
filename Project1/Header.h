@@ -22,4 +22,5 @@ void selectionSort(ZAPO* const poljeZapos);
 void selectionSortMax(ZAPO* const poljeZapos);
 void selectionSortID(ZAPO* const poljeZapos);
 
+int izbornik2(const char* const imeDatoteke);
 #endif

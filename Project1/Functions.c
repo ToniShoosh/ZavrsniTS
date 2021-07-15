@@ -232,7 +232,7 @@ void* pretrazivanjeZapos(ZAPO* const poljeZapos) {
 
 
 int izlaz(ZAPO* poljeZapos, ZAPO* pronadeniZapos) {
-	char m[3] = { '\0' };
+	char m[4] = { '\0' };
 
 	printf("\nDa li ste sigurni kako zelite zavrsiti program?\n");
 
@@ -252,7 +252,7 @@ int izlaz(ZAPO* poljeZapos, ZAPO* pronadeniZapos) {
 		free(pronadeniZaposPrezime);
 		pronadeniZaposPrezime = NULL;
 
-		return 0;
+		exit(EXIT_SUCCESS);
 	}
 	else {
 		return 1;
@@ -388,3 +388,82 @@ void selectionSortID(ZAPO* const poljeZapos) {
 		zamjena((poljeZapos + i), (poljeZapos + min));
 	}
 }
+
+
+
+
+
+//Izbornik za korisnika
+
+int izbornik2(const char* const imeDatoteke) {
+
+	printf("\n__________________________________________________________________________________________________\n");
+
+	printf("Unesite jednu od ponudenih opcija:");
+	printf("                    \n\n");
+	printf("\t\tOpcija 1: Citanje zaposlenika iz datoteke.\n");
+	printf("\t\tOpcija 2: Ispis svih zaposlenika.\n");
+	printf("\t\tOpcija 3: Pretraga zaposlenika po ID-u i njegovo ispisivanje.\n");
+	printf("\t\tOpcija 4: Pretraga zaposlenika po imenu i ispis zaposlenika.\n");
+	printf("\t\tOpcija 5: Pretraga zaposlenika po prezimu i ispis zaposlenika.\n");
+	printf("\t\tOpcija 6: Zavrsetak programa.\n");
+
+	printf("__________________________________________________________________________________________________\n\n");
+
+	int cap = 0;
+
+	scanf("%d", &cap);
+
+	switch (cap) {
+	case 1:
+
+		if (poljeZapos != NULL) {
+			free(poljeZapos);
+			poljeZapos = NULL;
+		}
+
+		poljeZapos = (ZAPO*)ucitavanjeZapos(imeDatoteke);
+
+		if (poljeZapos == NULL) {
+			exit(EXIT_FAILURE);
+		}
+
+		break;
+
+	case 2:
+
+		pocetnoUcitavanje(imeDatoteke);
+		ispisivanjeZapos(poljeZapos);
+		break;
+
+	case 3:
+
+		pocetnoUcitavanje(imeDatoteke);
+		pronadeniZapos = (ZAPO*)pretrazivanjeZapos(poljeZapos);
+		break;
+
+	case 4:
+
+		pocetnoUcitavanje(imeDatoteke);
+		pronadeniZaposIme = (ZAPO*)pretrazivanjeZaposIme(poljeZapos);
+		break;
+
+	case 5:
+
+		pocetnoUcitavanje(imeDatoteke);
+		pronadeniZaposPrezime = (ZAPO*)pretrazivanjeZaposPrezime(poljeZapos);
+		break;
+
+	case 6:
+
+		cap = izlaz(poljeZapos, pronadeniZapos);
+		break;
+
+	default:
+		cap = 0;
+
+	}
+
+	return cap;
+}
+
